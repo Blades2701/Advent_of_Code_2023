@@ -1,16 +1,45 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import os
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    part1()
 
 
-# Press the green button in the gutter to run the script.
+def part1():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    content = read_input(current_dir + '/Input.txt')  # need to split the string on \
+    lines: list[str] = content.split()
+    numbers: list[int] = []
+    find_digit(lines, numbers)
+    print(sum(numbers))
+    # 54597 ! Part 1
+
+
+def find_digit(lines, numbers):
+    for line in lines:
+        number: int = 0
+        # looking from the front
+        for letter in line:
+            if letter.isdigit():
+                number = int(letter) * 10
+                break
+
+        # for loop in reverse
+        for letter in reversed(line):
+            if letter.isdigit():
+                number = int(letter) + number
+                break
+
+        numbers.append(number)
+
+
+def read_input(file_path: str):
+    with open(file_path, 'r') as file:
+        content = file.read()
+    return content
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    main()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# Problem phrase prendre premier et dernier chiffre dans phrase - Addition à la fin
