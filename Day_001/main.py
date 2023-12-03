@@ -2,9 +2,8 @@ import os
 
 
 def main():
-    # part1()
+    part1()
     part2()
-
 
 def part1():
     current_dir = os.path.dirname(os.path.abspath(__file__))
